@@ -1,1 +1,7 @@
 /build/
+/.classpath
+/.gitignore
+/.project
+/.settings/
+/WebContent/
+/src/
