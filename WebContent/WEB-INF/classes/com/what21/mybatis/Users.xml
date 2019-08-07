@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.what21.dao.IUserDao">
+	<resultMap type="com.what21.model.Users" id="usersResultMap">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="age" column="age"/>
+		<result property="phone" column="phone"/>
+		<result property="email" column="email"/>
+	</resultMap>
+	<select id="findAll" resultMap="usersResultMap" parameterType="java.util.Map">
+		select * from users LIMIT #{startPage},#{endPage}
+	</select>
+	<select id="countUsers" resultType="java.lang.Integer">
+		select count(1) from users
+	</select>
+	
+	<insert id="addUsers" parameterType="com.what21.model.Users">
+		INSERT INTO users (id, name, age, phone, email) VALUES (#{id}, #{name}, #{age},#{phone},#{email})
+	</insert>
+	<update id="updateUsers" parameterType="com.what21.model.Users">
+		UPDATE users SET name = #{name},age =#{age},phone =#{phone},email =#{email} WHERE id =#{id}
+	</update>
+	<delete id="deleteUsers" parameterType="java.lang.Integer">
+		DELETE FROM users WHERE id = #{id}
+	</delete>
+</mapper>
